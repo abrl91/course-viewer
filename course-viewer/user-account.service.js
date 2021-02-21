@@ -6,12 +6,16 @@
 
         self.getUser = function (userName) {
             return $http.get(apiBase + 'user/' + encodeURIComponent(userName) + '/get')
-                .then(result => result.data);
+                .then(function (result) {
+                    return result.data;
+                });
         }
 
         self.addUser = function (userModel) {
             return $http.post(apiBase + 'user/add', userModel)
-                .then(result => result.data);
+                .then(function (result) {
+                    return result.data;
+                });
         }
 
         return this;

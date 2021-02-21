@@ -9,10 +9,11 @@
             var vm = this;
 
             vm.authors = null;
-
+            
             vm.$onInit = function () {
-                authorService.getAllAuthors()
-                    .then(authors => vm.authors = authors);
+                authorService.getAllAuthors().then(function (authors) {
+                    vm.authors = authors;
+                });
             }
         },
         templateUrl: 'course-viewer/author/author-list.component.html'

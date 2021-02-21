@@ -3,11 +3,21 @@
 
     angular.module('courseViewer').component('courseModules', {
         bindings: {
-          course: '<'
+            course: '<'
         },
         controllerAs: 'vm',
-        controller: function () {
-            const vm = this;
+        controller: function (courseService) {
+            var vm = this;
+
+            vm.timeFormat = function (module) {
+                var hours = 0;
+                var minutes = Number(module.Minutes);
+                var seconds = Number(module.Seconds);
+
+                var moduleLength = courseService.timeFormat(hours, minutes, seconds);
+
+                return moduleLength;
+            }
         },
         templateUrl: 'course-viewer/course/course-modules.component.html'
     });

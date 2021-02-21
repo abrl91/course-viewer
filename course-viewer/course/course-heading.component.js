@@ -3,12 +3,12 @@
 
     angular.module('courseViewer').component('courseHeading', {
         bindings: {
-          course: '<'
+            course: '<'
         },
         controllerAs: 'vm',
-
         controller: function () {
-            const vm = this;
+            var vm = this;
+
         },
         templateUrl: 'course-viewer/course/course-heading.component.html'
     });

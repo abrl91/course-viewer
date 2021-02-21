@@ -4,36 +4,30 @@
     angular.module('courseViewer').component('userStatus', {
         controllerAs: 'vm',
         controller: function (userAccountService, authenticationService) {
-            const vm = this;
-
-            vm.fullName = '';
-
-            const getUser = function (userName) {
-                userAccountService.getUser(userName)
-                    .then(user => {
-                        vm.fullName = `${user.firstName} ${user.lastName}`;
-                    })
-            }
+            var vm = this;
 
             vm.$onInit = function () {
                 if (authenticationService.loggedIn) {
                     getUser(authenticationService.userName);
                 }
             }
-
-            vm.postRegister = function (registerResponse, cb) {
-                userAccountService.addUser(registerResponse)
-                    .then(user => {
-                        if (cb !== null) {
-                            cb();
-                        }
-                    });
+            
+            vm.postRegister = function (registerResponse, callback) {
+                userAccountService.addUser(registerResponse).then(function (user) {
+                    if (callback != null)
+                        callback();
+                })
             }
 
             vm.postLogin = function (loginResponse) {
-                getUser(loginResponse)
+                getUser(loginResponse);
             }
 
+            var getUser = function (userName) {
+                userAccountService.getUser(userName).then(function (user) {
+                    vm.userFullName = user.FirstName + ' ' + user.LastName;
+                });
+            }
         },
         templateUrl: 'course-viewer/user-status.component.html'
     });

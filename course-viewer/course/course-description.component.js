@@ -7,7 +7,8 @@
         },
         controllerAs: 'vm',
         controller: function () {
-            const vm = this;
+            var vm = this;
+
         },
         templateUrl: 'course-viewer/course/course-description.component.html'
     });

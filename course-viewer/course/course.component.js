@@ -2,18 +2,23 @@
     'use strict';
 
     angular.module('courseViewer').component('course', {
-        controllerAs: 'vm',
         bindings: {
-          courseId: '<'
+            courseId: '<'
         },
-        controller: function () {
-            const vm = this;
+        controllerAs: 'vm',
+        controller: function (courseService, authenticationService) {
+            var vm = this;
+
+            vm.course = null;
+            vm.authenticationService = authenticationService;
 
             vm.$onInit = function () {
-                vm.course = {
-                    CourseId: vm.courseId
+                if (vm.courseId) {
+                    courseService.getCourse(vm.courseId).then(function (course) {
+                        vm.course = course;
+                    });
                 }
-            };
+            }
         },
         templateUrl: 'course-viewer/course/course.component.html'
     });
