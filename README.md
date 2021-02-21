@@ -1,2 +1,0 @@
-# course-viewer
-angularJS component

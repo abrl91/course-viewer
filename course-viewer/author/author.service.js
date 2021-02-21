@@ -19,6 +19,13 @@
                 });
         }
 
+        self.getCourses = function (authorId) {
+            return $http.get(apiBase + 'author/' + authorId + '/courses')
+                .then(function (result) { 
+                    return result.data;
+            });
+        }
+
         return this;
     });
 })();

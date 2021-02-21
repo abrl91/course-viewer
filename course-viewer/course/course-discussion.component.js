@@ -15,7 +15,8 @@
             vm.commentEntryVisible = false;
 
             vm.$onChanges = function (changes) {
-                if (changes.loggedIn.currentValue != null || changes.course.currentValue != null) {
+                if ((changes.loggedIn != null && changes.loggedIn.currentValue != null) || 
+                    (changes.course != null && changes.course.currentValue != null)) {
                     if (authenticationService.loggedIn && vm.course != null) {
                         courseService.getCourseDiscussion(vm.course.CourseId).then(function (courseDiscussion) {
                             vm.courseDiscussion = courseDiscussion;
