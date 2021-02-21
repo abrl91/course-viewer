@@ -3,16 +3,14 @@
 
     angular.module('courseViewer').component('courseList', {
         controllerAs: 'vm',
-        controller: function (apiBase, $http) {
+        controller: function (courseService) {
             const vm = this;
 
             vm.courses = null;
 
             vm.$onInit = function () {
-                $http.get(`${apiBase}/courses`)
-                    .then(res => {
-                        vm.courses = res.data
-                    });
+                courseService.getAllCourses()
+                    .then(courses => vm.courses = courses);
             }
         },
         templateUrl: 'course-viewer/course/course-list.component.html'

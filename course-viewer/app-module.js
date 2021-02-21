@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const appModule = angular.module('courseViewer', ['ui.router']);
+    const appModule = angular.module('courseViewer', ['securityModule', 'ui.router']);
 
     appModule.value('apiBase', 'http://pluralsightcourseviewer.azurewebsites.net/api/courseviewer');
 

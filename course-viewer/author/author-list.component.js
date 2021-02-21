@@ -5,16 +5,14 @@
         bindings: {
         },
         controllerAs: 'vm',
-        controller: function (apiBase, $http) {
+        controller: function (authorService) {
             var vm = this;
 
             vm.authors = null;
 
             vm.$onInit = function () {
-                $http.get(`${apiBase}/authors`)
-                    .then(res => {
-                       vm.authors = res.data;
-                    });
+                authorService.getAllAuthors()
+                    .then(authors => vm.authors = authors);
             }
         },
         templateUrl: 'course-viewer/author/author-list.component.html'
